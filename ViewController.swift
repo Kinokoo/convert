@@ -22,11 +22,10 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         static let Delisle      = 7
     }
 
-    @IBOutlet weak var inputField: NSTextField!
-    @IBOutlet weak var switchCF: NSSegmentedControl!
-
-    @IBOutlet weak var textNames: NSTextField!
-    @IBOutlet weak var textValues: NSTextField!
+    @IBOutlet weak var inputField:  NSTextField!
+    @IBOutlet weak var switchCF:    NSSegmentedControl!
+    @IBOutlet weak var textNames:   NSTextField!
+    @IBOutlet weak var textValues:  NSTextField!
 
     @IBAction func changed(sender: NSTextField)
     {
@@ -35,7 +34,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         }
 
         var temperature = Temperature()
-        let sentValue = sender.doubleValue ?? 0
+        let sentValue   = sender.doubleValue ?? 0
         
         switch(switchCF.objectValue!.integerValue)
         {
@@ -67,24 +66,22 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             temperature.celsius = sentValue
         }
 
-        
-        var results: [String: Double];
-        
-        results = [ "Celsius":      temperature.celsius,
-                    "Fahrenheit":   temperature.fahrenheit,
-                    "Kelvin":       temperature.kelvin,
-                    "Rankine":      temperature.rankine,
-                    "Newton":       temperature.newton,
-                    "Réaumur":      temperature.réaumur,
-                    "Rømer":        temperature.rømer,
-                    "Delisle":      temperature.delisle]
-        
+        var results: [String: Double] = [   "Celsius"   : temperature.celsius,
+                                            "Fahrenheit": temperature.fahrenheit,
+                                            "Kelvin"    : temperature.kelvin,
+                                            "Rankine"   : temperature.rankine,
+                                            "Newton"    : temperature.newton,
+                                            "Réaumur"   : temperature.réaumur,
+                                            "Rømer"     : temperature.rømer,
+                                            "Delisle"   : temperature.delisle
+                                        ]
+
         textNames.stringValue  = ""
         textValues.stringValue = ""
         
         for item in results {
-            textNames.stringValue = textNames.stringValue + item.0 + "\n"
-            textValues.stringValue = textValues.stringValue + "\(item.1)\n"
+            textNames.stringValue   = textNames.stringValue  + item.0 + "\n"
+            textValues.stringValue  = textValues.stringValue + "\(item.1)\n"
         }
     }
     
