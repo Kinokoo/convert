@@ -27,14 +27,10 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet weak var textNames:   NSTextField!
     @IBOutlet weak var textValues:  NSTextField!
 
-    @IBAction func changed(sender: NSTextField)
+    override func controlTextDidChange(obj: NSNotification)
     {
-        if sender.stringValue == "" {
-            return
-        }
-
         var temperature = Temperature()
-        let sentValue   = sender.doubleValue ?? 0
+        let sentValue   = inputField.doubleValue ?? 0
         
         switch(switchCF.objectValue!.integerValue)
         {
@@ -65,23 +61,30 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         default:
             temperature.celsius = sentValue
         }
-
+        
         var results: [String: Double] = [   "Celsius"   : temperature.celsius,
-                                            "Fahrenheit": temperature.fahrenheit,
-                                            "Kelvin"    : temperature.kelvin,
-                                            "Rankine"   : temperature.rankine,
-                                            "Newton"    : temperature.newton,
-                                            "Réaumur"   : temperature.réaumur,
-                                            "Rømer"     : temperature.rømer,
-                                            "Delisle"   : temperature.delisle
-                                        ]
-
+            "Fahrenheit": temperature.fahrenheit,
+            "Kelvin"    : temperature.kelvin,
+            "Rankine"   : temperature.rankine,
+            "Newton"    : temperature.newton,
+            "Réaumur"   : temperature.réaumur,
+            "Rømer"     : temperature.rømer,
+            "Delisle"   : temperature.delisle
+        ]
+        
         textNames.stringValue  = ""
         textValues.stringValue = ""
         
         for item in results {
             textNames.stringValue   = textNames.stringValue  + item.0 + "\n"
             textValues.stringValue  = textValues.stringValue + "\(item.1)\n"
+        }
+    }
+    
+    @IBAction func changed(sender: NSTextField)
+    {
+        if sender.stringValue == "" {
+            return
         }
     }
     
