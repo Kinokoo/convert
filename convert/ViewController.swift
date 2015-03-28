@@ -10,29 +10,50 @@ import Darwin
 import Cocoa
 
 class ViewController: NSViewController, NSTextFieldDelegate {
-    
-    struct switchStatus {
-        static let Celsius      = 0
-        static let Fahrenheit   = 1
-        static let Kelvin       = 2
-        static let Rankine      = 3
-        static let Newton       = 4
-        static let Réaumur      = 5
-        static let Rømer        = 6
-        static let Delisle      = 7
-    }
 
     @IBOutlet weak var inputField:  NSTextField!
     @IBOutlet weak var switchCF:    NSSegmentedControl!
     @IBOutlet weak var textNames:   NSTextField!
     @IBOutlet weak var textValues:  NSTextField!
 
+    @IBAction func switchCFClicked(sender: AnyObject) {
+        convertTemperatures()
+    }
+
     override func controlTextDidChange(obj: NSNotification)
     {
+        convertTemperatures()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        inputField.delegate = self
+        convertTemperatures()
+    }
+    
+    override var representedObject: AnyObject? {
+        didSet {
+            // Update the view, if already loaded.
+        }
+    }
+
+    func convertTemperatures() {
+        
         var temperature = Temperature()
         let sentValue   = inputField.doubleValue ?? 0
         
-        switch(switchCF.objectValue!.integerValue)
+        struct switchStatus {
+            static let Celsius      = 0
+            static let Fahrenheit   = 1
+            static let Kelvin       = 2
+            static let Rankine      = 3
+            static let Newton       = 4
+            static let Réaumur      = 5
+            static let Rømer        = 6
+            static let Delisle      = 7
+        }
+        
+        switch(switchCF.selectedSegment)
         {
         case switchStatus.Celsius:
             temperature.celsius = sentValue
@@ -61,8 +82,14 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         default:
             temperature.celsius = sentValue
         }
-        
-        var results: [String: Double] = [   "Celsius"   : temperature.celsius,
+
+        printTemperatures(temperature)
+    }
+    
+    func printTemperatures (temperature: Temperature!)
+    {
+        var temperatures: [String: Double] = [
+            "Celsius"   : temperature.celsius,
             "Fahrenheit": temperature.fahrenheit,
             "Kelvin"    : temperature.kelvin,
             "Rankine"   : temperature.rankine,
@@ -75,30 +102,10 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         textNames.stringValue  = ""
         textValues.stringValue = ""
         
-        for item in results {
-            textNames.stringValue   = textNames.stringValue  + item.0 + "\n"
+        for item in temperatures {
+            textNames.stringValue   = textNames.stringValue  + "\(item.0)\n"
             textValues.stringValue  = textValues.stringValue + "\(item.1)\n"
         }
     }
-    
-    @IBAction func changed(sender: NSTextField)
-    {
-        if sender.stringValue == "" {
-            return
-        }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        inputField.delegate = self
-    }
-
-    override var representedObject: AnyObject? {
-        didSet {
-        // Update the view, if already loaded.
-        }
-    }
-
-
 }
 

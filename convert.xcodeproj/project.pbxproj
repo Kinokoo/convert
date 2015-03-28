@@ -161,6 +161,7 @@
 				TargetAttributes = {
 					39210FB51AC069B600D7510F = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = Z3VDLRNSU5;
 					};
 					39210FC71AC069B600D7510F = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -401,6 +402,7 @@
 				39210FD41AC069B600D7510F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		39210FD51AC069B600D7510F /* Build configuration list for PBXNativeTarget "convertTests" */ = {
 			isa = XCConfigurationList;
@@ -409,6 +411,7 @@
 				39210FD71AC069B600D7510F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
