@@ -36,6 +36,7 @@
 		39210FCD1AC069B600D7510F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39210FCE1AC069B600D7510F /* convertTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = convertTests.swift; sourceTree = "<group>"; };
 		39210FD81AC069CF00D7510F /* temperature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = temperature.swift; sourceTree = "<group>"; };
+		392110051AC827AE00D7510F /* convert.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = convert.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +78,7 @@
 		39210FB81AC069B600D7510F /* convert */ = {
 			isa = PBXGroup;
 			children = (
+				392110051AC827AE00D7510F /* convert.entitlements */,
 				39210FBB1AC069B600D7510F /* AppDelegate.swift */,
 				39210FBD1AC069B600D7510F /* ViewController.swift */,
 				39210FD81AC069CF00D7510F /* temperature.swift */,
@@ -162,6 +164,11 @@
 					39210FB51AC069B600D7510F = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = Z3VDLRNSU5;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					39210FC71AC069B600D7510F = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -329,6 +336,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = convert/convert.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = convert/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -340,6 +349,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = convert/convert.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = convert/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
